@@ -3,15 +3,38 @@ mock-server (not release)
 
 a node mock server.
 
+
 ```shell
-#set mock response
+
+#set mock response by request /setResponse
   curl 'http://127.0.0.1/setResponse?url=%2Faaa&res=mockContent'
-    #1415625948774_127.0.0.1  #relate-key
+    #response: 1415625948774_127.0.0.1  #relate-key
+
+#set mock response by request /proxy
+  curl 'http://127.0.0.1/proxy?ip=1.1.1.1&path=/aaa'
+
+```
+
+```shell
 
 #get mock response
   #style1 
     curl -b 'fe_mock=1415625948774_127.0.0.1' 'http://127.0.0.1/aaa'
-  #style2 
-    curl 'http://127.0.0.1/getResponse?url=%2Faaa&key=1415625948774_127.0.0.1'
-    #mockContent
+    #response: mockContent
+
 ```
+
+======
+
+#Attribute Usage
+|| *url* || *paramter in request* || *response* ||
+|| /setResponse || url{string}, res{string}, contentType{'json'|'html'|'javascript'|'text'}, delay{number} || relate-key{string} ||
+|| /proxy || isCache, ip, path, host, port, contentType || key(isCache=true) or proxy response ||
+|| /getResponse || url, key || res ||
+|| / || have cookie which key='fe_mock' and value is $relate-key || res ||
+
+#featrue
+*20min clear cache
+*is /setResponse has delay paramter, the / response will delay seconds
+*the / must have cookie. the key is fe_mock, the value is relate-keys join with , (eg: fe_mock=k1,k2,k3)
+
