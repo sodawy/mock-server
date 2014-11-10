@@ -1,8 +1,9 @@
-mock-server (not release)
+mock-server
 ===========
 
 ## overview
 a node mock server. storage the custom response in a map on the serverside and return the map key(relate-key). the map key is url&key, value is the response. so if the request uri is the maped url with the relate-key in cookie, the custom respone will return.
+
 
 ## demo
 ### set mock response by request /setResponse
@@ -22,6 +23,7 @@ curl -b 'fe_mock=1415625948774_127.0.0.1' 'http://127.0.0.1/aaa'
 //response: mockContent
 ```
 
+
 ## Attribute Usage
 | *url* | *paramter in request* | *response* |
 | -------- | -------- | -------- |
@@ -29,6 +31,7 @@ curl -b 'fe_mock=1415625948774_127.0.0.1' 'http://127.0.0.1/aaa'
 | /proxy | `isCache`, `ip`, `path`, `host`, `port`, `contentType` | relate-key(isCache=true) or proxy res |
 | /getResponse | `url`, `key` | res |
 | / | have cookie which key=`fe_mock` and value is $relate-key | res |
+
 
 ## featrue
 * 20min clear cache
