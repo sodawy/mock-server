@@ -22,7 +22,7 @@ curl -b 'fe_mock=1415625948774_127.0.0.1' 'http://127.0.0.1/aaa'
 
 ##Attribute Usage
 || *url* || *paramter in request* || *response* ||
-|| setResponse || url{string}, res{string}, contentType{'json'|'html'|'javascript'|'text'}, delay{number} || relate-key{string} ||
+||aa || bb|| cc ||
 
 ##featrue
 * 20min clear cache
